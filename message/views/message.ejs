@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/message.css">
+    <link rel='icon' type='image/x-icon' href='/img/logo.png'>
+    <title>Message</title>
+</head>
+<body>
+    <%- include('./include/navbar.ejs') %>
+    
+    <div class="container">
+        <div class="card shadow">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-8">
+                            <div class="card mb-3">
+                                <div class="card-body p-0 pt-3 pr-2 pl-2 position-relative messages" id="content-message">
+                                    <div class="row" id="output">
+                                        <% messages.forEach(function(message) { %>
+                                            <div class="col-md-12">
+                                                <%if (message.user_id == user.id) { %>
+                                                    <div class="myUser mb-3 shadow-sm" data-toggle="tooltip" data-placement="top" title="<%= message.timestamp %>">
+                                                        <%= message.message %>
+                                                    </div>
+                                                <% } else { %>
+                                                    <div class="friends mb-3 shadow-sm" data-toggle="tooltip" data-placement="top" title="<%= message.timestamp %>">
+                                                        <%= message.message %>
+                                                    </div>
+                                                <% } %>
+                                            </div>
+                                        <% }); %>
+                                    </div>
+
+                                    <div id="feedback"></div>
+                                    
+                                </div>
+                                <div class="card-footer m-0 p-0">
+                                    <form id="submit-message">
+                                        <div class="input-group m-0">
+                                            <input type="text" id="display_name" class="form-control d-none" value="<%- user.display_name %>">
+                                            <input type="text" id="user_id" class="form-control d-none" value="<%- user.id %>">
+                                            
+                                            <div class="input-group-append w-100">
+                                                <input type="text" id="message" class="" autofocus autocomplete="off" placeholder="message here...">
+                                                <button class="btn btn-success border border-success" id="send"><i class="fas fa-paper-plane"></i></button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                    </div>
+                    <div class="col-md-4">
+                        <h4>Xin chào <%- user.display_name %> !</h4>
+                        <a href="/dashboard" class="btn btn-danger"><i class="far fa-arrow-alt-circle-left"></i> Dashboard </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.3/socket.io.js"></script>
+    <script src="/js/chat.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+    <script>
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,44 @@
+body{
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+input{
+    outline: none;
+    width: 100%;
+    border: 1px solid #d2dae2;
+    padding: 0px 5px;
+    border-radius: 0 0 0 5px;
+}
+.messages{
+    width: 100%;
+    height: 70vh;
+    overflow: scroll;
+    overflow-x:  hidden;
+    background: #d2dae2
+}
+
+.myUser{
+    max-width: 80%;
+    display: inline;
+    float: right;
+    background: #4b4b4b;
+    color: #fff;
+    padding: 10px 15px;
+    border-radius: 10px;
+}
+
+.friends{
+    float: left;
+    display: inline;
+    background: #28a745;
+    color: #fff;
+    padding: 10px 15px;
+    border-radius: 10px;
+    max-width: 80%;
+}
